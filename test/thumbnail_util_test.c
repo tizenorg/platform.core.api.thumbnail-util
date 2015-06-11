@@ -27,12 +27,12 @@
 GMainLoop *g_loop = NULL;
 char *g_id = NULL;
 
-void thumbnail_completed_cb(thumbnail_util_error_e error, const char *request_id, int raw_width, int raw_height, unsigned char *raw_data, int raw_size, void*user_data)
+void thumbnail_completed_cb(thumbnail_util_error_e error, const char *request_id, int raw_width, int raw_height, unsigned char *raw_data, int raw_size, void *user_data)
 {
 #if 0
 	FILE *fp;
-	fp = fopen( "test.raw", "w");
-    fwrite(raw_data, 1, raw_size, fp);
+	fp = fopen("test.raw", "w");
+	fwrite(raw_data, 1, raw_size, fp);
 	fclose(fp);
 #endif
 	thumbnail_util_debug("=================[RESULT]");
@@ -41,7 +41,7 @@ void thumbnail_completed_cb(thumbnail_util_error_e error, const char *request_id
 	thumbnail_util_debug("width [%d], height [%d]", raw_width, raw_height);
 	thumbnail_util_debug("raw_data [0x%x], size [%d]", *raw_data, raw_size);
 
-	if(strncmp(request_id, "50", 2) == 0)
+	if (strncmp(request_id, "50", 2) == 0)
 		g_main_loop_quit(g_loop);
 }
 
@@ -65,7 +65,7 @@ gboolean extract_thumbnail_start(gpointer data)
 
 	for (i = 0; i < 50; i++) {
 		char filepath[255] = {0,};
-		snprintf(filepath, sizeof(filepath), "%s%d.jpg", "/opt/usr/media/Images/test_image", i+1);
+		snprintf(filepath, sizeof(filepath), "%s%d.jpg", "/opt/usr/media/Images/test_image", i + 1);
 		thumbnail_util_debug("File : %s\n", filepath);
 		thumbnail_util_set_path(test_info, filepath);
 		ret = thumbnail_util_extract(test_info, thumbnail_completed_cb, test_info, &g_id);
@@ -75,12 +75,12 @@ gboolean extract_thumbnail_start(gpointer data)
 	thumbnail_h test_info;
 	thumbnail_util_create(&test_info);
 	thumbnail_util_set_path(test_info, "/opt/usr/media/Images/test_image1.jpg");
-	//thumbnail_util_set_size(test_info, 511, 288);
+	/*thumbnail_util_set_size(test_info, 511, 288); */
 	ret = thumbnail_util_extract(test_info, thumbnail_completed_cb, test_info, &g_id);
 #endif
 	thumbnail_util_destroy(test_info);
 
-	if(ret == THUMBNAIL_UTIL_ERROR_NONE)
+	if (ret == THUMBNAIL_UTIL_ERROR_NONE)
 		thumbnail_util_debug("extract raw data is success");
 	else
 		thumbnail_util_error("extract raw data is failed");
@@ -97,7 +97,7 @@ gboolean cancel_all(gpointer data)
 #if 0
 	ret = thumbnail_util_cancel_all(_media_thumb);
 
-	if(ret == THUMBNAIL_UTIL_ERROR_NONE)
+	if (ret == THUMBNAIL_UTIL_ERROR_NONE)
 		thumbnail_util_debug("thumbnail_util_cancel_all is success");
 	else
 		thumbnail_util_error("thumbnail_util_cancel_all is failed");
@@ -108,7 +108,7 @@ gboolean cancel_all(gpointer data)
 	for (i = num - 20; i < num; i++) {
 		__convert_i_to_a(i, &req_str);
 		ret = thumbnail_util_cancel(_media_thumb, req_str);
-		if(ret == THUMBNAIL_UTIL_ERROR_NONE)
+		if (ret == THUMBNAIL_UTIL_ERROR_NONE)
 			thumbnail_util_debug("thumbnail_util_cancel[%d] is success", i);
 		else
 			thumbnail_util_error("thumbnail_util_cancel[%d] is failed", i);
@@ -128,15 +128,15 @@ int test_extract_thumbnail(bool cancel)
 	g_loop = g_main_loop_new(NULL, false);
 	context = g_main_loop_get_context(g_loop);
 	source = g_idle_source_new();
-	g_source_set_callback (source, extract_thumbnail_start, NULL, NULL);
-	g_source_attach (source, context);
+	g_source_set_callback(source, extract_thumbnail_start, NULL, NULL);
+	g_source_attach(source, context);
 
 	/* Logic to cancel */
 	if (cancel) {
 		GSource *cancel_src = NULL;
 		cancel_src = g_idle_source_new();
-		g_source_set_callback (cancel_src, cancel_all, NULL, NULL);
-		g_source_attach (cancel_src, context);
+		g_source_set_callback(cancel_src, cancel_all, NULL, NULL);
+		g_source_attach(cancel_src, context);
 	}
 
 	g_main_loop_run(g_loop);
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 	thumbnail_util_debug("--- Thumbnail util test start ---\n\n");
 
 	ret = test_extract_thumbnail(false);
-	if(ret != THUMBNAIL_UTIL_ERROR_NONE)
+	if (ret != THUMBNAIL_UTIL_ERROR_NONE)
 		return ret;
 
 	thumbnail_util_debug("--- Thumbnail util test end ---\n");
