@@ -28,6 +28,7 @@
 #include <glib.h>
 #include <thumbnail_util_type.h>
 #include <dlog.h>
+#include <tzplatform_config.h>
 
 
 #ifdef __cplusplus

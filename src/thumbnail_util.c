@@ -96,7 +96,7 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
 			_thumb->dst_height = 240;
 		}
 
-		ret = thumbnail_request_extract_raw_data_async(_thumb->request_id, _thumb->file_path, _thumb->dst_width, _thumb->dst_height, (ThumbRawFunc)__thumbnail_util_extract_completed_cb, (void *)_thumb_cb);
+		ret = thumbnail_request_extract_raw_data_async(_thumb->request_id, _thumb->file_path, _thumb->dst_width, _thumb->dst_height, (ThumbRawFunc)__thumbnail_util_extract_completed_cb, (void *)_thumb_cb, tzplatform_getuid(TZ_USER_NAME));
 	}
 	else
 	{
@@ -154,7 +154,7 @@ int thumbnail_util_cancel(thumbnail_h thumb, const char *request_id)
 	if(_thumb != NULL && STRING_VALID(request_id))
 	{
 		unsigned int request_id_integer = atoi(request_id);
-		ret = thumbnail_request_cancel_raw_data(request_id_integer);
+		ret = thumbnail_request_cancel_raw_data(request_id_integer, tzplatform_getuid(TZ_USER_NAME));
 	}
 	else
 	{
@@ -172,7 +172,7 @@ int thumbnail_util_cancel_all(thumbnail_h thumb)
 
 	if(_thumb != NULL)
 	{
-		ret = thumbnail_request_cancel_all(true);
+		ret = thumbnail_request_cancel_all(true, tzplatform_getuid(TZ_USER_NAME));
 	}
 	else
 	{

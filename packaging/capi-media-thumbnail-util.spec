@@ -46,7 +46,7 @@ make %{?jobs:-j%jobs}
 %files
 %manifest capi-media-thumbnail-util.manifest
 %{_libdir}/libcapi-media-thumbnail-util.so
-%{_datadir}/license/%{name}
+%license LICENSE.APLv2.0
 
 %files devel
 %{_includedir}/media/*.h
