@@ -46,8 +46,7 @@ extern "C" {
 #define SAFE_FREE(src)		{if(src) {free(src); src = NULL;}}
 #define STRING_VALID(str)		((str != NULL && strlen(str) > 0) ? TRUE : FALSE)
 
-typedef struct
-{
+typedef struct {
 	int request_id;
 	char *file_path;
 	int dst_width;
@@ -56,8 +55,7 @@ typedef struct
 	unsigned char *thumb_data;
 }thumbnail_s;
 
-typedef struct
-{
+typedef struct {
 	thumbnail_s *handle;
 	thumbnail_extracted_cb thumb_extract_cb;
 	void *user_data;
@@ -75,39 +73,39 @@ typedef struct
 #define thumbnail_util_gettid() syscall(__NR_gettid)
 
 #define thumbnail_util_retv_if(expr, val) do { \
-			if(expr) { \
-				LOGE(FONT_COLOR_RED"[%d]", media_content_gettid());    \
-				return (val); \
-			} \
-		} while (0)
+		if(expr) { \
+			LOGE(FONT_COLOR_RED"[%d]", media_content_gettid());    \
+			return (val); \
+		} \
+	} while (0)
 
 #define thumbnail_util_debug(fmt, arg...) do { \
-			LOGD(FONT_COLOR_RESET"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
-		} while (0)
+		LOGD(FONT_COLOR_RESET"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
+	} while (0)
 
 #define thumbnail_util_info(fmt, arg...) do { \
-			LOGI(FONT_COLOR_GREEN"[%d]"fmt"", thumbnail_util_gettid() ,##arg);     \
-		} while (0)
+		LOGI(FONT_COLOR_GREEN"[%d]"fmt"", thumbnail_util_gettid() ,##arg);     \
+	} while (0)
 
 #define thumbnail_util_error(fmt, arg...) do { \
-			LOGE(FONT_COLOR_RED"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
-		} while (0)
+		LOGE(FONT_COLOR_RED"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
+	} while (0)
 
 #define thumbnail_util_debug_func() do { \
-			LOGD(FONT_COLOR_RESET"[%d]", thumbnail_util_gettid());     \
-		} while (0)
+		LOGD(FONT_COLOR_RESET"[%d]", thumbnail_util_gettid());     \
+	} while (0)
 
 #define thumbnail_util_sec_debug(fmt, arg...) do { \
-			SECURE_LOGD(FONT_COLOR_RESET"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
-		} while (0)
+		SECURE_LOGD(FONT_COLOR_RESET"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
+	} while (0)
 
 #define thumbnail_util_sec_warn(fmt, arg...) do { \
-			SECURE_LOGW(FONT_COLOR_GREEN"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
-		} while (0)
+		SECURE_LOGW(FONT_COLOR_GREEN"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
+	} while (0)
 
 #define thumbnail_util_sec_error(fmt, arg...) do { \
-			SECURE_LOGE(FONT_COLOR_RED"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
-		} while (0)
+		SECURE_LOGE(FONT_COLOR_RED"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
+	} while (0)
 
 #ifdef __cplusplus
 }

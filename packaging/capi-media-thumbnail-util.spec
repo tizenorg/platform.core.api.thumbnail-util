@@ -1,6 +1,6 @@
 Name:       capi-media-thumbnail-util
 Summary:    A media thumbnail util library in SLP C API
-Version: 0.1.0
+Version: 0.1.1
 Release:    1
 Group:      System/Libraries
 License:    Apache-2.0
