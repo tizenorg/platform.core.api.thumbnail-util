@@ -25,9 +25,12 @@ void __thumbnail_util_convert_itoa(int request_id, char **req_str)
 	char *buf = NULL;
 
 	buf = malloc(MAX_SIZE * sizeof(char));
-	snprintf(buf, MAX_SIZE, "%d", request_id);
-	*req_str = strndup(buf, strlen(buf));
-	SAFE_FREE(buf);
+
+	if (buf != NULL) {
+		snprintf(buf, MAX_SIZE, "%d", request_id);
+		*req_str = strndup(buf, strlen(buf));
+		SAFE_FREE(buf);
+	}
 }
 void __thumbnail_util_extract_completed_cb(int error, int request_id, const char *path, int thumb_width, int thumb_height, unsigned char *thumb_data, int thumb_size, void *user_data)
 {
@@ -82,9 +85,12 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
 		_thumb->request_id = g_thumbnail_req_id;
 		__thumbnail_util_convert_itoa(_thumb->request_id, request_id);
 		thumbnail_extract_cb_s *_thumb_cb = (thumbnail_extract_cb_s *)calloc(1, sizeof(thumbnail_extract_cb_s));
-		_thumb_cb->handle = _thumb;
-		_thumb_cb->user_data = user_data;
-		_thumb_cb->thumb_extract_cb = callback;
+
+		if (_thumb_cb != NULL) {
+			_thumb_cb->handle = _thumb;
+			_thumb_cb->user_data = user_data;
+			_thumb_cb->thumb_extract_cb = callback;
+		}
 
 		if (_thumb->dst_width == 0 || _thumb->dst_height == 0) {
 			_thumb->dst_width = 320;
@@ -154,7 +160,7 @@ int thumbnail_util_cancel_all(thumbnail_h thumb)
 	int ret = THUMBNAIL_UTIL_ERROR_NONE;
 	thumbnail_s *_thumb = (thumbnail_s *)thumb;
 
-	if(_thumb != NULL) 	{
+	if (_thumb != NULL) {
 		ret = thumbnail_request_cancel_all(true, tzplatform_getuid(TZ_USER_NAME));
 	} else {
 		thumbnail_util_error("INVALID_PARAMETER(0x%08x)", THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER);

@@ -57,6 +57,10 @@ int thumbnail_util_create(thumbnail_h *thumb);
  *
  * @since_tizen 2.4
  *
+ * @privlevel public
+ * @privilege %http://tizen.org/privilege/mediastorage \n
+ *                   %http://tizen.org/privilege/externalstorage
+ *
  * @remarks You must release @a request_id using free(). \n
  *                http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage. \n
  *                http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage. \n
@@ -122,6 +126,7 @@ int thumbnail_util_set_size(thumbnail_h thumb, int width, int height);
 /**
  * @brief Cancels the thumbnail extraction request for the given media.
  * @since_tizen 2.4
+ * @remarks If there is no item you want to cancel, this API return MEDIA_CONTENT_ERROR_INVALID_OPERATION
  *
  * @param[in] thumb         The media thumbnail info handle
  * @param[in] request_id   The generated request id by thumbnail extraction request
@@ -141,6 +146,7 @@ int thumbnail_util_cancel(thumbnail_h thumb, const char *request_id);
 /**
  * @brief Cancels all thumbnail extraction requests associated with the given thumbnail info handle.
  * @since_tizen 2.4
+ * @remarks If there is no item you want to cancel, this API return MEDIA_CONTENT_ERROR_INVALID_OPERATION
  *
  * @param[in] thumb The media thumbnail info handle
  *
