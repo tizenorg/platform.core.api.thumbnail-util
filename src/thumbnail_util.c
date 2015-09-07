@@ -146,7 +146,7 @@ int thumbnail_util_cancel(thumbnail_h thumb, const char *request_id)
 
 	if (_thumb != NULL && STRING_VALID(request_id)) {
 		unsigned int request_id_integer = atoi(request_id);
-		ret = thumbnail_request_cancel_raw_data(request_id_integer, tzplatform_getuid(TZ_USER_NAME));
+		ret = thumbnail_request_cancel_raw_data(request_id_integer);
 	} else {
 		thumbnail_util_error("INVALID_PARAMETER(0x%08x)", THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER);
 		ret = THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
@@ -161,7 +161,7 @@ int thumbnail_util_cancel_all(thumbnail_h thumb)
 	thumbnail_s *_thumb = (thumbnail_s *)thumb;
 
 	if (_thumb != NULL) {
-		ret = thumbnail_request_cancel_all(true, tzplatform_getuid(TZ_USER_NAME));
+		ret = thumbnail_request_cancel_all(true);
 	} else {
 		thumbnail_util_error("INVALID_PARAMETER(0x%08x)", THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER);
 		ret = THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
