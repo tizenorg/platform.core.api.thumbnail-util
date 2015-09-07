@@ -49,9 +49,12 @@ void __convert_i_to_a(unsigned int request_id, char **req_str)
 {
 	char *buf = NULL;
 	buf = malloc(MAX_SIZE * sizeof(char));
-	snprintf(buf, MAX_SIZE, "%d", request_id);
-	*req_str = strndup(buf, strlen(buf));
-	SAFE_FREE(buf);
+
+	if (buf != NULL) {
+		snprintf(buf, MAX_SIZE, "%d", request_id);
+		*req_str = strndup(buf, strlen(buf));
+		SAFE_FREE(buf);
+	}
 }
 
 gboolean extract_thumbnail_start(gpointer data)
