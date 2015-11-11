@@ -46,7 +46,8 @@ extern "C" {
  * @retval #THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER Invalid parameter
  * @retval #THUMBNAIL_UTIL_ERROR_OUT_OF_MEMORY Not enough memory is available
  * @retval #THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED Permission denied
- * @see thumbnail_util_destroy()
+ *
+ * @post Created handle can be release using thumbnail_util_destroy() API.
  */
 int thumbnail_util_create(thumbnail_h *thumb);
 
@@ -79,9 +80,10 @@ int thumbnail_util_create(thumbnail_h *thumb);
  * @retval #THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER Invalid parameter
  * @retval #THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED Permission denied
  *
- * @pre Create a thumbnail info handle by calling thumbnail_util_create().
+ * @pre Create a thumbnail info handle by calling thumbnail_util_create(). \n
+ *           The path that you want to generate must be set to created handle.
  *
- * @see thumbnail_util_create()
+ * @post The generated thumbnail is provided via thumbnail_extracted_cb.
  */
 int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, void *user_data, char **request_id);
 
@@ -98,6 +100,10 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
  * @retval #THUMBNAIL_UTIL_ERROR_NONE              Successful
  * @retval #THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER Invalid parameter
  * @retval #THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED Permission denied
+ *
+ * @pre Create a thumbnail info handle by calling thumbnail_util_create().
+ *
+ * @post Request a set value via thumbnail_util_extract().
  */
 int thumbnail_util_set_path(thumbnail_h thumb, const char *path);
 
@@ -119,7 +125,8 @@ int thumbnail_util_set_path(thumbnail_h thumb, const char *path);
  * @retval #THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED Permission denied
  *
  * @pre Create a thumbnail info handle by calling thumbnail_util_create().
- * @see thumbnail_util_extract()
+ *
+ * @post Request a set value via thumbnail_util_extract().
  */
 int thumbnail_util_set_size(thumbnail_h thumb, int width, int height);
 
@@ -139,7 +146,6 @@ int thumbnail_util_set_size(thumbnail_h thumb, int width, int height);
  * @retval #THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED Permission denied
  *
  * @pre Create a thumbnail info handle by calling thumbnail_util_create().
- * @post thumbnail_util_extract()
  */
 int thumbnail_util_cancel(thumbnail_h thumb, const char *request_id);
 
@@ -158,7 +164,6 @@ int thumbnail_util_cancel(thumbnail_h thumb, const char *request_id);
  * @retval #THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED Permission denied
  *
  * @pre Create a thumbnail info handle by calling thumbnail_util_create().
- * @post thumbnail_util_extract()
  */
 int thumbnail_util_cancel_all(thumbnail_h thumb);
 
