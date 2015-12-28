@@ -39,8 +39,8 @@ make %{?jobs:-j%jobs}
 
 %install
 %make_install
-
-
+mkdir -p %{buildroot}/%{_datadir}/license
+cp -rf %{_builddir}/%{name}-%{version}/LICENSE.APLv2.0 %{buildroot}/%{_datadir}/license/%{name}
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
@@ -49,7 +49,7 @@ make %{?jobs:-j%jobs}
 %files
 %manifest capi-media-thumbnail-util.manifest
 %{_libdir}/libcapi-media-thumbnail-util.so
-%license LICENSE.APLv2.0
+%{_datadir}/license/%{name}
 
 %files devel
 %{_includedir}/media/*.h
