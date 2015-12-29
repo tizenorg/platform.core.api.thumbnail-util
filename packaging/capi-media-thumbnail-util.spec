@@ -1,8 +1,8 @@
 Name:       capi-media-thumbnail-util
-Summary:    A media thumbnail util library in SLP C API
+Summary:    A media thumbnail util library in Tizen Native API
 Version: 0.1.2
 Release:    1
-Group:      System/Libraries
+Group:      Multimedia/API
 License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires:  cmake
@@ -15,15 +15,15 @@ Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
 %description
-A media thumbnail util  library in SLP C API
+A media thumbnail util library in Tizen Native API.
 
 %package devel
-Summary:  A media thumbnail util  library in SLP C API (Development)
-Group:    TO_BE/FILLED_IN
+Summary:  A media thumbnail util library in Tizen Native API (Development)
+Group:    Multimedia/Development
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-A media thumbnail util  library in SLP C API
+A media thumbnail util library in Tizen Native API. (Development files included)
 
 %prep
 %setup -q
