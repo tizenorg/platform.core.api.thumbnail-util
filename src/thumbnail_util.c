@@ -40,9 +40,9 @@ void __thumbnail_util_extract_completed_cb(int error, int request_id, const char
 	if (_thumb_cb != NULL) {
 		/*media_content_debug("error [%d], thumbnail_size [%d]", error, thumb_size); */
 		__thumbnail_util_convert_itoa(request_id, &request_id_str);
-		if (_thumb_cb->thumb_extract_cb) {
+		if (_thumb_cb->thumb_extract_cb)
 			_thumb_cb->thumb_extract_cb(error, request_id_str, thumb_width, thumb_height, thumb_data, thumb_size, _thumb_cb->user_data);
-		}
+
 	}
 	SAFE_FREE(_thumb_cb);
 }
