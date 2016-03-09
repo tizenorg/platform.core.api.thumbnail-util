@@ -59,14 +59,14 @@ int thumbnail_util_create(thumbnail_h *thumb);
  * @since_tizen 2.4
  *
  * @privlevel public
- * @privilege %http://tizen.org/privilege/mediastorage \n
- *                   %http://tizen.org/privilege/externalstorage
+ * @privilege %http://tizen.org/privilege/content.write
  *
  * @remarks You must release @a request_id using free(). \n
  *                http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage. \n
  *                http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage. \n
  *                If you don't set the size, the thumbnail size will be set default size. Default size is 320x240. \n
  *                Color space of the generated thumbnail is BGRA. \n
+ *                Since 3.0, http://tizen.org/privilege/content.write privilege is not required. \n
  *
  * @param[in] thumb     The thumbnail info handle
  * @param[in] callback  The callback function to be invoked
