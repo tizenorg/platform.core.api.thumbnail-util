@@ -15,10 +15,38 @@
 */
 
 #include <media-thumbnail.h>
+#include <media-util.h>
 #include <thumbnail_util.h>
 #include <thumbnail_util_private.h>
 
 #define MAX_SIZE 16
+
+int __thumbnail_util_error_capi(int content_error)
+{
+	/*Error None*/
+	if(content_error == MS_MEDIA_ERR_NONE)
+		return THUMBNAIL_UTIL_ERROR_NONE;
+
+	/* Internal operation error*/
+	else if((content_error == MS_MEDIA_ERR_INVALID_PARAMETER) ||
+		(content_error == MS_MEDIA_ERR_INVALID_PATH) ||
+		(content_error == MS_MEDIA_ERR_THUMB_DUPLICATED_REQUEST))
+		return THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
+
+	else if(content_error == MS_MEDIA_ERR_OUT_OF_MEMORY)
+		return THUMBNAIL_UTIL_ERROR_OUT_OF_MEMORY;
+
+	/* IPC operation error*/
+	else if((content_error <= MS_MEDIA_ERR_SOCKET_CONN) && (content_error >= MS_MEDIA_ERR_SOCKET_INTERNAL))
+		return THUMBNAIL_UTIL_ERROR_INVALID_OPERATION;
+
+	/* MEDIA SERVER error*/
+	else if(content_error == MS_MEDIA_ERR_PERMISSION_DENIED)
+		return THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED;
+
+	/*ETC*/
+	return THUMBNAIL_UTIL_ERROR_INVALID_OPERATION;
+}
 
 void __thumbnail_util_convert_itoa(int request_id, char **req_str)
 {
@@ -103,7 +131,7 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
 		ret = THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
 	}
 
-	return ret;
+	return __thumbnail_util_error_capi(ret);
 }
 
 int thumbnail_util_set_path(thumbnail_h thumb, const char *path)
