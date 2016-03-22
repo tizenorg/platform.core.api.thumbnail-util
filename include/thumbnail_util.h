@@ -36,7 +36,7 @@ extern "C" {
 
 /**
  * @brief Creates thumbnail info handle.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  * @remarks You must release @a thumb info using thumbnail_util_destroy().
  *
  * @param[in] thumb The handle to thumbnail info
@@ -56,7 +56,7 @@ int thumbnail_util_create(thumbnail_h *thumb);
  * @details This function extracts the thumbnail for given media item and calls registered
  *         callback function for completion of extracting the thumbnail.\n
  *
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  *
  * @remarks You must release @a request_id using free(). \n
  *                http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage. \n
@@ -86,7 +86,7 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
 
 /**
  * @brief Sets the path of original media file.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  *
  * @param[in] thumb     The thumbnail info handle
  * @param[in] path        The path of the original media file
@@ -106,7 +106,7 @@ int thumbnail_util_set_path(thumbnail_h thumb, const char *path);
 
 /**
  * @brief Sets the size of thumbnail to be extracted.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  * @remarks If you don't set the size, the thumbnail size will be set default size. Default size is 320x240. \n
  *                  If the set width is not a multiple of 8, it can be changed by inner process. the width will be a multiple of 8 greater than the set value.
  *
@@ -129,7 +129,7 @@ int thumbnail_util_set_size(thumbnail_h thumb, int width, int height);
 
 /**
  * @brief Cancels the thumbnail extraction request for the given media.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  * @remarks If there is no item you want to cancel, this API return MEDIA_CONTENT_ERROR_INVALID_OPERATION
  *
  * @param[in] thumb         The media thumbnail info handle
@@ -148,7 +148,7 @@ int thumbnail_util_cancel(thumbnail_h thumb, const char *request_id);
 
 /**
  * @brief Cancels all thumbnail extraction requests associated with the given thumbnail info handle.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  * @remarks If there is no item you want to cancel, this API return MEDIA_CONTENT_ERROR_INVALID_OPERATION
  *
  * @param[in] thumb The media thumbnail info handle
@@ -170,7 +170,7 @@ int thumbnail_util_cancel_all(thumbnail_h thumb);
  *          can no longer be used to perform any operation. New thumbnail info handle has to
  *          be created before the next usage.
  *
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  *
  * @param[in]  thumb  The thumbnail info handle
  *

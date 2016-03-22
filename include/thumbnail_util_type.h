@@ -44,7 +44,7 @@ extern "C" {
 /**
  * @ingroup CAPI_MEDIA_THUMBNAIL_UTIL_MODULE
  * @brief Enumeration for a thumbnail util error.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  */
  typedef enum
 {
@@ -60,7 +60,7 @@ extern "C" {
 /**
  * @ingroup CAPI_MEDIA_THUMBNAIL_UTIL_MODULE
  * @brief The structure type for the thumbnail info handle.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  */
 typedef struct thumbnail_s *thumbnail_h;
 
@@ -68,7 +68,7 @@ typedef struct thumbnail_s *thumbnail_h;
 /**
  * @ingroup CAPI_MEDIA_THUMBNAIL_UTIL_MODULE
  * @brief Called when creating the thumbnail.
- * @since_tizen 2.4
+ * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  * @remarks Color space of the generated thumbnail is BGRA.
  *
  * @details This callback is called for completion of generating the thumbnail.
