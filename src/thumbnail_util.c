@@ -105,6 +105,7 @@ int thumbnail_util_create(thumbnail_h *thumb)
 int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, void *user_data, char **request_id)
 {
 	int ret = THUMBNAIL_UTIL_ERROR_NONE;
+	int res = 0;
 	static int g_thumbnail_req_id = 0;
 	thumbnail_s *_thumb = (thumbnail_s *)thumb;
 
@@ -125,13 +126,14 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
 			_thumb->dst_height = 240;
 		}
 
-		ret = thumbnail_request_extract_raw_data_async(_thumb->request_id, _thumb->file_path, _thumb->dst_width, _thumb->dst_height, (ThumbRawFunc)__thumbnail_util_extract_completed_cb, (void *)_thumb_cb, tzplatform_getuid(TZ_USER_NAME));
+		res = thumbnail_request_extract_raw_data_async(_thumb->request_id, _thumb->file_path, _thumb->dst_width, _thumb->dst_height, (ThumbRawFunc)__thumbnail_util_extract_completed_cb, (void *)_thumb_cb, tzplatform_getuid(TZ_USER_NAME));
+		ret = __thumbnail_util_error_capi(res);
 	} else {
 		thumbnail_util_error("INVALID_PARAMETER(0x%08x)", THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER);
-		ret = THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
+		ret = THUMBNAIL_UTIL_ERROR_INVALID_OPERATION;
 	}
 
-	return __thumbnail_util_error_capi(ret);
+	return ret;
 }
 
 int thumbnail_util_set_path(thumbnail_h thumb, const char *path)
