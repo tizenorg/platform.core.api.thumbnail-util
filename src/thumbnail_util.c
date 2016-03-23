@@ -130,7 +130,7 @@ int thumbnail_util_extract(thumbnail_h thumb, thumbnail_extracted_cb callback, v
 		ret = __thumbnail_util_error_capi(res);
 	} else {
 		thumbnail_util_error("INVALID_PARAMETER(0x%08x)", THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER);
-		ret = THUMBNAIL_UTIL_ERROR_INVALID_OPERATION;
+		ret = THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
 	}
 
 	return ret;
