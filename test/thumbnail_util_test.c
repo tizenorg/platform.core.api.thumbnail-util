@@ -31,7 +31,11 @@ void thumbnail_completed_cb(thumbnail_util_error_e error, const char *request_id
 {
 #if 0
 	FILE *fp;
-	fp = fopen("test.raw", "w");
+	char file_name[MAX_SIZE + 1] = {0, };
+
+	memset(file_name, 0, MAX_SIZE);
+	snprintf(file_name, MAX_SIZE, "test_%s.raw", request_id);
+	fp = fopen(file_name, "w");
 	fwrite(raw_data, 1, raw_size, fp);
 	fclose(fp);
 #endif
@@ -40,9 +44,12 @@ void thumbnail_completed_cb(thumbnail_util_error_e error, const char *request_id
 	thumbnail_util_debug("request id [%s]", request_id);
 	thumbnail_util_debug("width [%d], height [%d]", raw_width, raw_height);
 	thumbnail_util_debug("raw_data [0x%x], size [%d]", *raw_data, raw_size);
-
+#if 0
 	if (strncmp(request_id, "50", 2) == 0)
 		g_main_loop_quit(g_loop);
+#else
+	g_main_loop_quit(g_loop);
+#endif
 }
 
 void __convert_i_to_a(unsigned int request_id, char **req_str)
@@ -60,7 +67,7 @@ void __convert_i_to_a(unsigned int request_id, char **req_str)
 gboolean extract_thumbnail_start(gpointer data)
 {
 	int ret = THUMBNAIL_UTIL_ERROR_NONE;
-#if 1
+#if 0
 	int i;
 	thumbnail_h test_info;
 	thumbnail_util_create(&test_info);
@@ -68,7 +75,7 @@ gboolean extract_thumbnail_start(gpointer data)
 
 	for (i = 0; i < 50; i++) {
 		char filepath[255] = {0,};
-		snprintf(filepath, sizeof(filepath), "%s%d.jpg", "/opt/usr/media/Images/test_image", i + 1);
+		snprintf(filepath, sizeof(filepath), "%s%d.jpg", "/home/owner/content/Images/test_image", i + 1);
 		thumbnail_util_debug("File : %s\n", filepath);
 		thumbnail_util_set_path(test_info, filepath);
 		ret = thumbnail_util_extract(test_info, thumbnail_completed_cb, test_info, &g_id);
@@ -77,7 +84,7 @@ gboolean extract_thumbnail_start(gpointer data)
 #else
 	thumbnail_h test_info;
 	thumbnail_util_create(&test_info);
-	thumbnail_util_set_path(test_info, "/opt/usr/media/Images/test_image1.jpg");
+	thumbnail_util_set_path(test_info, "/home/owner/content/Images/test_image1.jpg");
 	/*thumbnail_util_set_size(test_info, 511, 288); */
 	ret = thumbnail_util_extract(test_info, thumbnail_completed_cb, test_info, &g_id);
 #endif
