@@ -46,14 +46,13 @@ extern "C" {
  * @brief Enumeration for a thumbnail util error.
  * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  */
- typedef enum
-{
-    THUMBNAIL_UTIL_ERROR_NONE                    = TIZEN_ERROR_NONE,                    /**< Successful */
-    THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER       = TIZEN_ERROR_INVALID_PARAMETER,       /**< Invalid parameter */
-    THUMBNAIL_UTIL_ERROR_OUT_OF_MEMORY           = TIZEN_ERROR_OUT_OF_MEMORY,           /**< Out of memory */
-    THUMBNAIL_UTIL_ERROR_INVALID_OPERATION       = TIZEN_ERROR_INVALID_OPERATION,       /**< Invalid Operation */
-    THUMBNAIL_UTIL_ERROR_FILE_NO_SPACE_ON_DEVICE       = TIZEN_ERROR_FILE_NO_SPACE_ON_DEVICE, /**< No space left on device */
-    THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED		= TIZEN_ERROR_PERMISSION_DENIED,		  /**< Permission denied */
+typedef enum {
+	THUMBNAIL_UTIL_ERROR_NONE                    = TIZEN_ERROR_NONE,                    /**< Successful */
+	THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER       = TIZEN_ERROR_INVALID_PARAMETER,       /**< Invalid parameter */
+	THUMBNAIL_UTIL_ERROR_OUT_OF_MEMORY           = TIZEN_ERROR_OUT_OF_MEMORY,           /**< Out of memory */
+	THUMBNAIL_UTIL_ERROR_INVALID_OPERATION       = TIZEN_ERROR_INVALID_OPERATION,       /**< Invalid Operation */
+	THUMBNAIL_UTIL_ERROR_FILE_NO_SPACE_ON_DEVICE       = TIZEN_ERROR_FILE_NO_SPACE_ON_DEVICE, /**< No space left on device */
+	THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED		= TIZEN_ERROR_PERMISSION_DENIED,		  /**< Permission denied */
 } thumbnail_util_error_e;
 
 

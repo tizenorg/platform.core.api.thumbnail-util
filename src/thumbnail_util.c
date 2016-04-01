@@ -24,24 +24,24 @@
 int __thumbnail_util_error_capi(int content_error)
 {
 	/*Error None*/
-	if(content_error == MS_MEDIA_ERR_NONE)
+	if (content_error == MS_MEDIA_ERR_NONE)
 		return THUMBNAIL_UTIL_ERROR_NONE;
 
 	/* Internal operation error*/
-	else if((content_error == MS_MEDIA_ERR_INVALID_PARAMETER) ||
+	else if ((content_error == MS_MEDIA_ERR_INVALID_PARAMETER) ||
 		(content_error == MS_MEDIA_ERR_INVALID_PATH) ||
 		(content_error == MS_MEDIA_ERR_THUMB_DUPLICATED_REQUEST))
 		return THUMBNAIL_UTIL_ERROR_INVALID_PARAMETER;
 
-	else if(content_error == MS_MEDIA_ERR_OUT_OF_MEMORY)
+	else if (content_error == MS_MEDIA_ERR_OUT_OF_MEMORY)
 		return THUMBNAIL_UTIL_ERROR_OUT_OF_MEMORY;
 
 	/* IPC operation error*/
-	else if((content_error <= MS_MEDIA_ERR_SOCKET_CONN) && (content_error >= MS_MEDIA_ERR_SOCKET_INTERNAL))
+	else if ((content_error <= MS_MEDIA_ERR_SOCKET_CONN) && (content_error >= MS_MEDIA_ERR_SOCKET_INTERNAL))
 		return THUMBNAIL_UTIL_ERROR_INVALID_OPERATION;
 
 	/* MEDIA SERVER error*/
-	else if(content_error == MS_MEDIA_ERR_PERMISSION_DENIED)
+	else if (content_error == MS_MEDIA_ERR_PERMISSION_DENIED)
 		return THUMBNAIL_UTIL_ERROR_PERMISSION_DENIED;
 
 	/*ETC*/

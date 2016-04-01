@@ -43,7 +43,7 @@ extern "C" {
 
 #define SAFE_STRLCPY(dst, src, n)	((g_strlcpy(dst, src, n) < n) ? TRUE : FALSE)
 #define SAFE_STRLCAT(dst, src, n)	g_strlcat(dst, src, n);
-#define SAFE_FREE(src)		{if(src) {free(src); src = NULL;}}
+#define SAFE_FREE(src)		{if (src) {free(src); src = NULL; } }
 #define STRING_VALID(str)		((str != NULL && strlen(str) > 0) ? TRUE : FALSE)
 
 typedef struct {
@@ -53,13 +53,13 @@ typedef struct {
 	int dst_height;
 	int thumb_size;
 	unsigned char *thumb_data;
-}thumbnail_s;
+} thumbnail_s;
 
 typedef struct {
 	thumbnail_s *handle;
 	thumbnail_extracted_cb thumb_extract_cb;
 	void *user_data;
-}thumbnail_extract_cb_s;
+} thumbnail_extract_cb_s;
 
 #define FONT_COLOR_RESET    "\033[0m"
 #define FONT_COLOR_RED      "\033[31m"
@@ -73,7 +73,7 @@ typedef struct {
 #define thumbnail_util_gettid() syscall(__NR_gettid)
 
 #define thumbnail_util_retv_if(expr, val) do { \
-		if(expr) { \
+		if (expr) { \
 			LOGE(FONT_COLOR_RED"[%d]", media_content_gettid());    \
 			return (val); \
 		} \
@@ -84,11 +84,11 @@ typedef struct {
 	} while (0)
 
 #define thumbnail_util_info(fmt, arg...) do { \
-		LOGI(FONT_COLOR_GREEN"[%d]"fmt"", thumbnail_util_gettid() ,##arg);     \
+		LOGI(FONT_COLOR_GREEN"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
 	} while (0)
 
 #define thumbnail_util_error(fmt, arg...) do { \
-		LOGE(FONT_COLOR_RED"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
+		LOGE(FONT_COLOR_RED"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
 	} while (0)
 
 #define thumbnail_util_debug_func() do { \
@@ -100,11 +100,11 @@ typedef struct {
 	} while (0)
 
 #define thumbnail_util_sec_warn(fmt, arg...) do { \
-		SECURE_LOGW(FONT_COLOR_GREEN"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
+		SECURE_LOGW(FONT_COLOR_GREEN"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
 	} while (0)
 
 #define thumbnail_util_sec_error(fmt, arg...) do { \
-		SECURE_LOGE(FONT_COLOR_RED"[%d]"fmt"",thumbnail_util_gettid(), ##arg);     \
+		SECURE_LOGE(FONT_COLOR_RED"[%d]"fmt"", thumbnail_util_gettid(), ##arg);     \
 	} while (0)
 
 #ifdef __cplusplus
