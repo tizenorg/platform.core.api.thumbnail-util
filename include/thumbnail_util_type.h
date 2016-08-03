@@ -68,7 +68,8 @@ typedef struct thumbnail_s *thumbnail_h;
  * @ingroup CAPI_MEDIA_THUMBNAIL_UTIL_MODULE
  * @brief Called when creating the thumbnail.
  * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
- * @remarks Color space of the generated thumbnail is BGRA.
+ * @remarks Color space of the generated thumbnail is BGRA. \n
+ *                  The callback is called in a separate thread(not in the main loop).
  *
  * @details This callback is called for completion of generating the thumbnail.
  *
